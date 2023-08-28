@@ -10,12 +10,8 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   
-  <hr>
-  <hr>
-  <hr>
-  <hr>
-  <hr>
-  
+  <div class="centrar">
+  <!--
   <ion-item>
     <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez"></ion-input>
   </ion-item>
@@ -26,6 +22,29 @@
   <hr>
   
   <ion-button fill="clear" [routerLink]="['/home']">Iniciar Sesión</ion-button>
+  -->
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Acceder</ion-card-title>
+        <ion-card-subtitle class="ion-text-center">Sistema de asistencia Duoc UC</ion-card-subtitle>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-item>
+          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password"></ion-input>
+        </ion-item>
+      </ion-card-content>
+      <div class="ion-text-right">
+        <ion-button fill="outline" [routerLink]="['/home']" >Iniciar Sesión</ion-button>
+      </div>
+      
+    </ion-card>
+
+  </div>
   
   
 </ion-content>

@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  saludo: String; 
+  constructor() {
+    this.saludo = 'Bienvenido a la página...';
+  }
 
 }
