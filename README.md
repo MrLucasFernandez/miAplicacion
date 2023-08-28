@@ -3,7 +3,6 @@
 Integrantes:
 
 Lucas Fernández.
-
 Francisco Toloza.
 
 
