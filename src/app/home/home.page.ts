@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginPageModule } from '../login/login.module';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,10 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  
   saludo: String; 
+
+
   constructor() {
     this.saludo = 'Bienvenido a la página...';
   }

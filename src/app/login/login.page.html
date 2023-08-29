@@ -31,19 +31,22 @@
       
       <ion-card-content>
         <ion-item>
-          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez"></ion-input>
+          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez" type="text" [(ngModel)]="user.username"></ion-input>
         </ion-item>
         <hr>
         <ion-item>
-          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password"></ion-input>
+          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password" [(ngModel)]="user.password"></ion-input>
         </ion-item>
+        <hr>
+        <div class="ion-text-center">
+          <ion-button fill="clear" [routerLink]="['/home']" size="small">¿Olvidaste tu contraseña?</ion-button>
+        </div>
       </ion-card-content>
       <div class="ion-text-right">
         <ion-button fill="outline" [routerLink]="['/home']" >Iniciar Sesión</ion-button>
       </div>
       
     </ion-card>
-
   </div>
   
   
