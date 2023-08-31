@@ -1,8 +1,4 @@
-<!-- <ion-header collapse="condense">
-  <ion-toolbar>
-    <ion-title size="large"></ion-title>
-  </ion-toolbar>
-</ion-header>-->
+
 <ion-header>
   <ion-toolbar>
     <ion-title>Ingreso de usuario</ion-title>
@@ -11,43 +7,45 @@
 <ion-content [fullscreen]="true">
   
   <div class="centrar">
-  <!--
-  <ion-item>
-    <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez"></ion-input>
-  </ion-item>
-  <hr>
-  <ion-item>
-    <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password"></ion-input>
-  </ion-item>
-  <hr>
   
-  <ion-button fill="clear" [routerLink]="['/home']">Iniciar Sesión</ion-button>
-  -->
     <ion-card >
       <ion-card-header>
         <ion-card-title class="ion-text-center">Acceder</ion-card-title>
         <ion-card-subtitle class="ion-text-center">Sistema de asistencia Duoc UC</ion-card-subtitle>
       </ion-card-header>
+      <br>
       
       <ion-card-content>
         <ion-item>
-          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez" type="text" [(ngModel)]="user.username"></ion-input>
+          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez" type="text" [(ngModel)]="userLogin.username"></ion-input>
         </ion-item>
-        <hr>
+        
         <ion-item>
-          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password" [(ngModel)]="user.password"></ion-input>
+          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password" [(ngModel)]="userLogin.password"></ion-input>
         </ion-item>
-        <hr>
+        <br>
+        <div class="ion-text-center alerta">
+          <span >Datos ingresados invalidos</span>
+        </div>
+        
+        <br>
+        <br>
         <div class="ion-text-center">
-          <ion-button fill="clear" [routerLink]="['/home']" size="small">¿Olvidaste tu contraseña?</ion-button>
+          <ion-button fill="clear" [routerLink]="['/home']">¿Olvidaste tu contraseña?</ion-button>
         </div>
       </ion-card-content>
       <div class="ion-text-right">
-        <ion-button fill="outline" [routerLink]="['/home']" >Iniciar Sesión</ion-button>
+        <ion-button fill="solid" (click)="userLoginValidator()" class="boton-inicio">Iniciar Sesión</ion-button>
       </div>
       
     </ion-card>
+    <br>
+    <br>
+    <br>
+
   </div>
+  <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
   
   
 </ion-content>
+

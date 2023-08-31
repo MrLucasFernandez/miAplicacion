@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button default-href="#"></ion-back-button>
+      <ion-back-button default-href="#" text="Volver"></ion-back-button>
     </ion-buttons>
     <ion-title>Inicio</ion-title>
   </ion-toolbar>
@@ -12,6 +12,7 @@
 
   <div id="container">
     <strong>{{saludo}}</strong>
+    <p>Hola {{ userInfoReceived?.username }}</p>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>

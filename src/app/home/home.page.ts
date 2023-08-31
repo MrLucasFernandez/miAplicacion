@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { LoginPageModule } from '../login/login.module';
+import { Component, Input } from '@angular/core';
+import { UsuarioClass } from '../services/usuario-class';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-home',
@@ -7,12 +10,26 @@ import { LoginPageModule } from '../login/login.module';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  userInfoReceived: UsuarioClass | undefined;
+  
 
   
+  
+  
+
   saludo: String; 
 
 
-  constructor() {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+
+    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['user'];
+    // Si quiero obtener un valor por URL usando routerLink
+    
+    
+
+
+
+
     this.saludo = 'Bienvenido a la página...';
   }
 

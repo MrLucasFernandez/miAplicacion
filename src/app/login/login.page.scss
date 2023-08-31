@@ -1,6 +1,15 @@
+
 ion-content{
     min-height: 100vh;
     position: relative;
+    --background: #012c56;
+}
+ion-img{
+    height: 25%;
+    width: 40%;
+    position: absolute;
+    bottom: 0;
+    transform: translate(75%);
 }
 
 .centrar{
@@ -10,3 +19,15 @@ ion-content{
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+.boton-inicio{
+    --background: #012c56;
+}
+
+.alerta{
+    color: #ff0000;
+}
+
+
+
+
