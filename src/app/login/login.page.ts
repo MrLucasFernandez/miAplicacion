@@ -12,8 +12,9 @@ import { Router, NavigationExtras, RouterLinkWithHref } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   
-  constructor(private route: Router) {}
+  constructor(private route1: Router) {}
 
+  alertaOpen = false;
   listUsuarios: UsuarioClass[] = [
     new UsuarioClass('Lucas','Fernández','lu.fernandezm@duocuc.cl',3,'lufernandezm','lucas123'),
     new UsuarioClass('Francisco','Toloza','fran.toloza@duocuc.cl',3,'frantoloza','francisco123'),
@@ -32,19 +33,23 @@ export class LoginPage implements OnInit {
     this.userLogin.password = ""
   }
 
+  mostrarAlerta(isShow: boolean){
+    this.alertaOpen = isShow;
+  }
+
   userLoginValidator(): void{
     for(let i = 0; i < this.listUsuarios.length; i++){
       if((this.listUsuarios[i].username==this.userLogin.username)&&(this.listUsuarios[i].password==this.userLogin.password)){
         this.userLogin.username=this.listUsuarios[i].username
         this.userLogin.password=this.listUsuarios[i].password
 
-        if(this.listUsuarios[i].type==1){
+        if(this.listUsuarios[i].tipo==1){
           this.userLogin.tipo='Administrador'//continuar validaciones de tipos y luego validar ingreso y clave
         }else{
-          if(this.listUsuarios[i].type==2){
+          if(this.listUsuarios[i].tipo==2){
             this.userLogin.tipo='Profesor'
           }else{
-            if(this.listUsuarios[i].type==3){
+            if(this.listUsuarios[i].tipo==3){
               this.userLogin.tipo='Alumno'
             }
           }
@@ -54,12 +59,14 @@ export class LoginPage implements OnInit {
             user: this.userLogin
           }
         }
-        this.route.navigate(['/home'], userInfoSend);
+        this.route1.navigate(['/home'], userInfoSend);
       }else{
-        //ocultar mensaje de error
+        //mostrar alerta de ingreso
+        this.mostrarAlerta(true)
       }
     }
   }
+  
   
 
   ngOnInit() {

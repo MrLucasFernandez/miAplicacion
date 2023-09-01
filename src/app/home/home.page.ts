@@ -11,11 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomePage {
   userInfoReceived: UsuarioClass | undefined;
-  
-
-  
-  
-  
 
   saludo: String; 
 
@@ -23,12 +18,6 @@ export class HomePage {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
 
     this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['user'];
-    // Si quiero obtener un valor por URL usando routerLink
-    
-    
-
-
-
 
     this.saludo = 'Bienvenido a la página...';
   }

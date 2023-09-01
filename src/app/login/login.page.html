@@ -17,21 +17,23 @@
       
       <ion-card-content>
         <ion-item>
-          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="Juan Pérez" type="text" [(ngModel)]="userLogin.username"></ion-input>
+          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="jofernandezp" type="text" [(ngModel)]="userLogin.username"></ion-input>
         </ion-item>
         
         <ion-item>
           <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password" [(ngModel)]="userLogin.password"></ion-input>
         </ion-item>
         <br>
-        <div class="ion-text-center alerta">
-          <span >Datos ingresados invalidos</span>
+        <!--
+        <div class="ion-text-center alerta" id="alerta">
+          <span></span>
         </div>
+        -->
+        
         
         <br>
-        <br>
         <div class="ion-text-center">
-          <ion-button fill="clear" [routerLink]="['/home']">¿Olvidaste tu contraseña?</ion-button>
+          <ion-button fill="clear" [routerLink]="['/restore']">¿Olvidaste tu contraseña?</ion-button>
         </div>
       </ion-card-content>
       <div class="ion-text-right">
@@ -45,6 +47,13 @@
 
   </div>
   <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
+  <ion-toast
+    [isOpen]="alertaOpen"
+    message="Datos ingresados invalidos"
+    [duration]="5000"
+    (didDismiss)="mostrarAlerta(false)"
+    class="custom-toast"
+  ></ion-toast>
   
   
 </ion-content>
