@@ -3,7 +3,7 @@ export class UsuarioClass {
         public nombre: string,
         public apellido: string,
         public email: string,
-        public tipo: number,
+        public tipo: string,
         public username: string,
         public password: string
     ){

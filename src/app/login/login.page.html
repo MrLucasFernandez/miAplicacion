@@ -11,19 +11,19 @@
     <ion-card >
       <ion-card-header>
         <ion-card-title class="ion-text-center">Acceder</ion-card-title>
-        <ion-card-subtitle class="ion-text-center">Sistema de asistencia Duoc UC</ion-card-subtitle>
+        <ion-card-subtitle class="ion-text-center">Sistema de asistencia registrAPP</ion-card-subtitle>
       </ion-card-header>
       <br>
       
       <ion-card-content>
         <ion-item>
-          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="jofernandezp" type="text" [(ngModel)]="userLogin.username"></ion-input>
+          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="jofernandezp" type="text" [(ngModel)]="username"></ion-input>
         </ion-item>
         
         <ion-item>
-          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="*******" type="password" [(ngModel)]="userLogin.password"></ion-input>
+          <ion-input label="Contraseña:" labelPlacement="stacked" placeholder="**********" type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
-        <br>
+        
         <!--
         <div class="ion-text-center alerta" id="alerta">
           <span></span>
@@ -37,7 +37,7 @@
         </div>
       </ion-card-content>
       <div class="ion-text-right">
-        <ion-button fill="solid" (click)="userLoginValidator()" class="boton-inicio">Iniciar Sesión</ion-button>
+        <ion-button fill="solid" (click)="login()" class="boton-inicio">Iniciar Sesión</ion-button>
       </div>
       
     </ion-card>
@@ -47,6 +47,7 @@
 
   </div>
   <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
+  
   <ion-toast
     [isOpen]="alertaOpen"
     message="Datos ingresados invalidos"
@@ -54,7 +55,6 @@
     (didDismiss)="mostrarAlerta(false)"
     class="custom-toast"
   ></ion-toast>
-  
   
 </ion-content>
 

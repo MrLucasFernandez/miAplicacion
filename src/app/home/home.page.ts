@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { UsuarioClass } from '../services/usuario-class';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -10,16 +9,28 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  userInfoReceived: UsuarioClass | undefined;
+  username = '';
+  nombre= '';
+  apellido= '';
+  email= '';
+  tipo= '';
+  carrera= '';
+  ramos= [];
 
-  saludo: String; 
+  
 
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-
-    this.userInfoReceived = this.router.getCurrentNavigation()?.extras.state?.['user'];
-
-    this.saludo = 'Bienvenido a la página...';
+  constructor(private route: ActivatedRoute) { // Agrega Router en el constructor
+    this.route.params.subscribe(params => {
+      this.username = params['username'];
+      this.nombre = params['nombre'];
+      this.apellido = params['apellido'];
+      this.email = params['email'];
+      this.tipo = params['tipo'];
+      this.carrera = params['carrera'];
+      this.ramos = params['ramos'].split(',');
+    });
+    
   }
+  
 
 }

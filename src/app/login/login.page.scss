@@ -4,6 +4,20 @@ ion-content{
     position: relative;
     --background: #012c56;
 }
+
+ion-card{
+    --background: #ffffff;
+}
+ion-card-title{
+    color: #000000;
+}
+ion-card-content{
+    padding-bottom: 1%;
+}
+ion-item{
+    --background: #ffffff;
+    color: #000000;
+}
 ion-img{
     height: 25%;
     width: 40%;
@@ -22,6 +36,8 @@ ion-img{
 
 .boton-inicio{
     --background: #012c56;
+    padding-right: 2%;
+    padding-bottom: 2%;
 }
 
 ion-toast.custom-toast::part(message) {

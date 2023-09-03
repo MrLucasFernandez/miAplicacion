@@ -1,19 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button default-href="#" text="Volver"></ion-back-button>
+      <ion-back-button default-href="#" text="Salir"></ion-back-button>
     </ion-buttons>
     <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    
+
+  <h2 class="titulo">¡Bienvenido {{nombre}}!</h2>
+  <br>
+  <br>
 
   <div id="container">
-    <strong>{{saludo}}</strong>
-    <p>Hola {{ userInfoReceived?.username }}</p>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card>
+      <ion-card-title>
+        <h1>Datos personales</h1>
+      </ion-card-title>
+      <ion-card-content>
+        <p>Usuario: </p>
+        <span>{{ username }}</span>
+        <p>Nombre: </p>
+        <span>{{nombre}} {{apellido}}</span>
+        <p>Tipo de perfil: </p>
+        <span>{{tipo}}</span>
+        <p>Correo electrónico: </p>
+        <span>{{email}}</span>
+        <p>Carrera: </p>
+        <span>{{carrera}}</span>
+        <br>
+      </ion-card-content>
+        
+      <ion-card-title>
+        <h1>Ramos en curso</h1>
+      </ion-card-title>
+      <ion-card-content>
+        <ul *ngFor="let i of ramos">
+          <li>{{i}}</li>
+        </ul>
+      </ion-card-content>
+
+    </ion-card>
+  
+    
   </div>
+  <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
 </ion-content>
 

@@ -10,6 +10,19 @@ ion-img{
     bottom: 0;
     transform: translate(75%);
 }
+ion-card{
+    --background: #ffffff;
+}
+ion-card-title{
+    color: #000000;
+}
+ion-card-content{
+    padding-bottom: 1%;
+}
+ion-item{
+    --background: #ffffff;
+    color: #000000;
+}
 
 .centrar{
     width: 90%;
@@ -21,4 +34,15 @@ ion-img{
 
 .boton-inicio{
     --background: #012c56;
+}
+
+ion-toast.custom-toast::part(message) {
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
+}
+ion-toast.custom-toast2::part(message) {
+    color: #35923d;
+    font-weight: bold;
+    text-align: center;
 }
