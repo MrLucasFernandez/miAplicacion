@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Restaurar contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="centrar">
+  
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Recuperar clave</ion-card-title>
+        <ion-card-subtitle class="ion-text-center">Sistema de asistencia Duoc UC</ion-card-subtitle>
+      </ion-card-header>
+      <br>
+      
+      <ion-card-content>
+        <ion-item>
+          <ion-input label="Nombre de usuario:" labelPlacement="stacked" placeholder="jofernandezp" type="text" [(ngModel)]="username"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input label="Nueva contraseña:" labelPlacement="stacked" placeholder="**********" type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Repetir contraseña:" labelPlacement="stacked" placeholder="**********" type="password" [(ngModel)]="password2"></ion-input>
+        </ion-item>
+        <br>
+        <!--
+        <div class="ion-text-center alerta" id="alerta">
+          <span></span>
+        </div>
+        -->
+        
+        <br>
+        
+        <div class="ion-text-center">
+          <ion-button fill="solid" class="boton-inicio" (click)="restore()">Recuperar</ion-button>
+        </div>
+      </ion-card-content>
+      
+      
+    </ion-card>
+    <br>
+    <br>
+    <br>
+
+  </div>
+  <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
+  <ion-toast
+    [isOpen]="alertaOpen"
+    message="El usuario ingresado no existe"
+    [duration]="5000"
+    (didDismiss)="mostrarAlerta(false)"
+    class="custom-toast"
+  ></ion-toast>
+  <ion-toast
+    [isOpen]="alertaOpen2"
+    message="Las contraseñas no coinciden"
+    [duration]="5000"
+    (didDismiss)="mostrarAlerta2(false)"
+    class="custom-toast"
+  ></ion-toast>
+  <ion-toast
+    [isOpen]="alertaOpen3"
+    message="¡Contraseña actualizada exitosamente!"
+    [duration]="4000"
+    (didDismiss)="mostrarAlerta3(false)"
+    class="custom-toast2"
+  ></ion-toast>
+
+  
+  
+</ion-content>

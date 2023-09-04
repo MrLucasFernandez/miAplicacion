@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,27 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  username = '';
+  nombre= '';
+  apellido= '';
+  email= '';
+  tipo= '';
+  carrera= '';
+  ramos= [];
 
-  saludo: String; 
-  constructor() {
-    this.saludo = 'Bienvenido a la página...';
+  constructor(private route: ActivatedRoute) { 
+    //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
+    this.route.params.subscribe(params => {
+      this.username = params['username'];
+      this.nombre = params['nombre'];
+      this.apellido = params['apellido'];
+      this.email = params['email'];
+      this.tipo = params['tipo'];
+      this.carrera = params['carrera'];
+      this.ramos = params['ramos'].split(',');
+    });
+    
   }
+  
 
 }

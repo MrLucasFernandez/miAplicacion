@@ -1,10 +1,15 @@
-
 ion-content{
     min-height: 100vh;
     position: relative;
     --background: #012c56;
 }
-
+ion-img{
+    height: 25%;
+    width: 40%;
+    position: absolute;
+    bottom: 0;
+    transform: translate(75%);
+}
 ion-card{
     --background: #ffffff;
 }
@@ -18,13 +23,6 @@ ion-item{
     --background: #ffffff;
     color: #000000;
 }
-ion-img{
-    height: 25%;
-    width: 40%;
-    position: absolute;
-    bottom: 0;
-    transform: translate(75%);
-}
 
 .centrar{
     width: 90%;
@@ -36,8 +34,6 @@ ion-img{
 
 .boton-inicio{
     --background: #012c56;
-    padding-right: 2%;
-    padding-bottom: 2%;
 }
 
 ion-toast.custom-toast::part(message) {
@@ -45,6 +41,8 @@ ion-toast.custom-toast::part(message) {
     font-weight: bold;
     text-align: center;
 }
-
-
-
+ion-toast.custom-toast2::part(message) {
+    color: #35923d;
+    font-weight: bold;
+    text-align: center;
+}
