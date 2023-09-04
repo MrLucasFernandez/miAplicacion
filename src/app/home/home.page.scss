@@ -1,13 +1,9 @@
 #container {
-  
-
-  
   left: 5%;
   right: 5%;
   top: 50%;
   transform: translateY(-50%,-50%);
 }
-
 
 .titulo{
   font-weight: bold;
@@ -16,9 +12,11 @@
   padding-right: 5%;
   color: #ffffff;
   font-style: italic;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
-
-
+ion-back-button{
+  padding-left: 10%;
+}
 ion-img{
   height: 15%;
   width: 40%;

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,9 +15,8 @@ export class HomePage {
   carrera= '';
   ramos= [];
 
-  
-
-  constructor(private route: ActivatedRoute) { // Agrega Router en el constructor
+  constructor(private route: ActivatedRoute) { 
+    //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
     this.route.params.subscribe(params => {
       this.username = params['username'];
       this.nombre = params['nombre'];

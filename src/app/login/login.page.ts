@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UsuarioClass } from '../services/usuario-class';
 import { LoginClass } from '../services/login-class';
 import { Router, NavigationExtras, RouterLinkWithHref } from '@angular/router';
-import { ArrayType } from '@angular/compiler';
-
+import type { IonModal } from '@ionic/angular';
+import { AnimationController } from '@ionic/angular';
 
 
 @Component({
@@ -14,26 +14,17 @@ import { ArrayType } from '@angular/compiler';
 export class LoginPage implements OnInit {
   
   alertaOpen = false;
-  
-  /*
-  usuariosReg:{nombre:string, apellido:string, email:string, tipo:string, username:string, password:string}[]=
-  [
-    {nombre:'Lucas', apellido:'Fernandez', email:'lu.fernandezm@duocuc.cl', tipo:'Administrador', username:'lufernandezm', password:'lucas123'},
-    {nombre:'Francisco', apellido:'Toloza', email:'fran.toloza@duocuc.cl', tipo:'Profesor', username:'frantoloza', password:'francisco123'},
-    {nombre:'Matias', apellido:'Diaz', email:'mat.diaz@duocuc.cl', tipo:'Alumno', username:'matdiaz', password:'matias123'},
-    {nombre:'Carlos', apellido:'De Ferrari', email:'car.deferrari@duocuc.cl', tipo:'Alumno', username:'cardeferrari', password:'cardeferrari123'}
-  ]
-  */
-  
-  
-  usuariosReg:{nombre:string, apellido:string, email:string, tipo:string, username:string, password:string, carrera:string, ramos:Array<string>[]}[]=[]
+  mostrarAlerta(isShow: boolean){
+    this.alertaOpen = isShow;
+  }//Se crea una variable en false para luego volverla True si se desea mostrar una alerta Toast
+
+
+  usuariosReg:{nombre:string, apellido:string, email:string, tipo:string, username:string, password:string, 
+              carrera:string, ramos:Array<string>[]}[]=[]
 
   username= ''
   password= ''	
-  
-  mostrarAlerta(isShow: boolean){
-    this.alertaOpen = isShow;
-  }
+  //Se crea el arreglo de usuarios con sus respectivos campos además de variables para recoger los datos del formulario
   
 
   constructor(private router: Router) {
@@ -42,17 +33,21 @@ export class LoginPage implements OnInit {
       this.usuariosReg = JSON.parse(localUsers);
     }
   }
+  //Se crea un router para luego navegar a otros componentes y se consume del localStorage los usuarios registrados y 
+  //se ordenan en formato JSON para su consumo
 
-  login(){
+
+  login(){//La función busca en el arreglo de usuarios si el usuario y contraseña son coinciden y guarda los datos del usuario en la constante user
     const user = this.usuariosReg.find(user => user.username === this.username && user.password === this.password); 
     //Busca el usuario en el localStorage
     console.log(user)
     
     if(user){
-      // Si el usuario se valida se redirige al Home
-      this.router.navigate(['/home', { username: this.username, nombre: user.nombre, apellido: user.apellido, email: user.email, tipo: user.tipo, carrera: user.carrera, ramos: user.ramos}]);
+      //Si el usuario con las credenciales existe se redirecciona al Home enviando los datos correspondientes
+      this.router.navigate(['/home', {username: this.username, nombre: user.nombre, apellido: user.apellido, 
+                                      email: user.email, tipo: user.tipo, carrera: user.carrera, ramos: user.ramos}]);
     } else {
-      // Si los datos no corresponden da arroja la alerta
+      //Si el usuario no existe se invoca la alerta para que el usuario intente nuevamente
       this.mostrarAlerta(true)
     }
   }
@@ -71,12 +66,21 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/login']);
   }*/
 
-  ngOnInit(){
-
+  ngOnInit(){//Se dejan los campos vacios al entrar a la página
+    this.username = '';
+    this.password = '';
   }
   /*
   constructor(private route1: Router) {}
 
+  
+  usuariosReg:{nombre:string, apellido:string, email:string, tipo:string, username:string, password:string}[]=
+  [
+    {nombre:'Lucas', apellido:'Fernandez', email:'lu.fernandezm@duocuc.cl', tipo:'Administrador', username:'lufernandezm', password:'lucas123'},
+    {nombre:'Francisco', apellido:'Toloza', email:'fran.toloza@duocuc.cl', tipo:'Profesor', username:'frantoloza', password:'francisco123'},
+    {nombre:'Matias', apellido:'Diaz', email:'mat.diaz@duocuc.cl', tipo:'Alumno', username:'matdiaz', password:'matias123'},
+    {nombre:'Carlos', apellido:'De Ferrari', email:'car.deferrari@duocuc.cl', tipo:'Alumno', username:'cardeferrari', password:'cardeferrari123'}
+  ]
   
   listUsuarios: UsuarioClass[] = [
     new UsuarioClass('Lucas','Fernández','lu.fernandezm@duocuc.cl',3,'lufernandezm','lucas123'),
@@ -95,8 +99,6 @@ export class LoginPage implements OnInit {
     this.userLogin.username = "",
     this.userLogin.password = ""
   }
-
-  
 
   userLoginValidator(): void{
     for(let i = 0; i < this.listUsuarios.length; i++){
@@ -127,9 +129,6 @@ export class LoginPage implements OnInit {
       }
     }
   }
-  
-  
-
   ngOnInit() {
     this.userLoginRestart
   }*/
