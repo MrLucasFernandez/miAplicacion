@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginPage } from '../login/login.page';
 import { Router, NavigationExtras, RouterLinkWithHref } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-restore',
@@ -12,12 +12,16 @@ export class RestorePage implements OnInit {
   alertaOpen = false;
   alertaOpen2 = false;
   alertaOpen3 = false;
+  alertaOpen4 = false;
 
   mostrarAlerta(isShow: boolean){
     this.alertaOpen = isShow;
   }
   mostrarAlerta2(isShow: boolean){
     this.alertaOpen2 = isShow;
+  }
+  mostrarAlerta4(isShow: boolean){
+    this.alertaOpen4 = isShow;
   }
   
   //Se crean las variables y métodos para invocar cada alerta según las condiciones
@@ -32,8 +36,15 @@ export class RestorePage implements OnInit {
   }//Se muestra la alerta 3 al conseguir una restauración exitosa mostrando un mensaje que 
   //esperará el tiempo asignado en pantalla antes de volver al Login
 
-  usuariosReg:{nombre:undefined, apellido:undefined, email:undefined, tipo:undefined, username:undefined, password:string, 
-              carrera:string, ramos:Array<string>[]}[]=[]
+  usuario:{
+    apellido: string,
+    contrasena: string,
+    correo: string,
+    carrera: string,
+    nombre: string,
+    nombre_usuario: string,
+    tipo: string
+  };
   
   username= '';
   password= '';
@@ -41,15 +52,42 @@ export class RestorePage implements OnInit {
   //Se crea el arreglo de usuarios con sus respectivos campos además de variables para recoger los datos del formulario
 
 
-  constructor(private router: Router) {
-    const localUsers = localStorage.getItem('usuariosRegistrados');
-    if (localUsers) {
-      this.usuariosReg = JSON.parse(localUsers);
+  constructor(private api:ApiService,private router: Router) {
+  }
+  restore(){
+    if(this.password!=''||this.password2!=''){
+      if(this.password==this.password2){
+        this.api.getUsuario(this.username).subscribe(res=>{
+          this.usuario=res;
+          this.api.putUsuario(this.usuario.nombre_usuario,{contrasena: this.password,nombre: this.usuario.nombre, apellido: this.usuario.apellido, correo: this.usuario.correo, carrera: this.usuario.carrera, tipo: this.usuario.tipo,nombre_usuario: this.usuario.nombre_usuario}).subscribe(res=>{     
+            this.usuario=res;
+            console.log(this.usuario);
+            
+            this.mostrarAlerta3(true)
+            
+          },(error)=>{
+            console.log(error);
+            this.mostrarAlerta(true)
+            
+          })
+        })
+        ,(error)=>{
+          console.log(error);
+          console.log('errorGET')
+          this.mostrarAlerta(true)
+          
+        }
+      }else{
+        this.mostrarAlerta2(true)
+      }
+    }else{
+      if(this.password==''&&this.password2==''){
+        this.mostrarAlerta4(true)
+      }
+      
     }
   }
-  //Se crea un router para luego navegar a otros componentes y se consume del localStorage los usuarios registrados y 
-  //se ordenan en formato JSON para su consumo
-
+  /*
   restore(){//La función busca en el arreglo de usuarios si el usuario coincide y guarda los datos de este en la 
             //constante user y la posición donde se encontraba en la variable index
     const user = this.usuariosReg.find(user => user.username == this.username);
@@ -80,7 +118,7 @@ export class RestorePage implements OnInit {
       this.password2= '';
     }
   }
-
+  */
   ngOnInit() {
     this.username= '';
     this.password= '';

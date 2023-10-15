@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-end">Mi Asistencia</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-card>
+      <ion-card-title>
+        <h1>Asistencia</h1>
+        <!--<ion-button fill="clear" (click)="mostrarRamos()">
+          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+        </ion-button>-->
+      </ion-card-title>
+
+      <ion-card-content>
+        <table>
+            <tr class="ion-text-left">
+              <th>Ramo</th>
+              <th>Clases Registradas</th>
+              <th>Clases Asistidas</th>
+              
+            </tr>
+          <tbody >
+            
+            <tr *ngFor="let i of asistencias">
+              
+              <td class="mover">{{i['ramo']}}</td>
+              <td class="mover">{{i['clases_reg']}}</td>
+              <td class="mover">{{i['clases_asist']}}</td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+
+      </ion-card-content>
+      
+      
+    </ion-card>
+  </div>
+  <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
+</ion-content>

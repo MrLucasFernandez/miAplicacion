@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,27 +7,29 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  username = '';
-  nombre= '';
-  apellido= '';
-  email= '';
-  tipo= '';
-  carrera= '';
-  ramos= [];
+  usuario:{
+    apellido: string,
+    contrasena: string,
+    correo: string,
+    carrera: string,
+    nombre: string,
+    nombre_usuario: string,
+    tipo: string
+  };
+  
 
-  constructor(private route: ActivatedRoute) { 
+  constructor(private router: Router) { 
     //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
-    this.route.params.subscribe(params => {
-      this.username = params['username'];
-      this.nombre = params['nombre'];
-      this.apellido = params['apellido'];
-      this.email = params['email'];
-      this.tipo = params['tipo'];
-      this.carrera = params['carrera'];
-      this.ramos = params['ramos'].split(',');
-    });
+    this.usuario = this.router.getCurrentNavigation()?.extras.state?.['usuario'];
     
   }
-  
+
+  verCuenta(){
+    this.router.navigate(['/usuario'], {state:{ usuario: this.usuario},});
+  }
+  logout(){
+    localStorage.setItem('online', 'false');
+    this.router.navigate(['/login']);
+  }
 
 }
