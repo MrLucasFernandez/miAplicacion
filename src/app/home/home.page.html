@@ -1,49 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button default-href="#" text="Salir" icon="close-outline"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Inicio</ion-title>
+    <ion-title class="ion-text-end">Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <h1 class="titulo">¡Bienvenido {{nombre}}!</h1>
+  
   <br>
   <br>
 
-  <div id="container">
+  <div>
     <ion-card>
-      <ion-card-title>
-        <h1>Datos personales</h1>
-      </ion-card-title>
-
-      <ion-card-content>
-        <p>Usuario: </p>
-        <span>{{ username }}</span>
-        <p>Nombre: </p>
-        <span>{{nombre}} {{apellido}}</span>
-        <p>Tipo de perfil: </p>
-        <span>{{tipo}}</span>
-        <p>Correo electrónico: </p>
-        <span>{{email}}</span>
-        <p>Carrera: </p>
-        <span>{{carrera}}</span>
-        <br>
-        
-      </ion-card-content>
-
-      <ion-card-title>
-        
-        <h1>Ramos en curso</h1>
+      <ion-card-title class="ion-text-center">
+        ¡Bienvenido {{usuario.nombre}}!
       </ion-card-title>
       
-      <ion-card-content>
-        <ul *ngFor="let i of ramos">
-          <li>{{i}}</li>
-        </ul>
+      <ion-card-content class="ion-text-center">
+        <ion-button fill="solid" class="boton-cuenta" (click)="verCuenta()">MI CUENTA</ion-button>
+        <ion-button fill="solid" class="boton-qr"> QR</ion-button>
+        <ion-button fill="solid" class="boton-salir" (click)="logout()">CERRAR SESIÓN</ion-button>
+        
       </ion-card-content>
+      <hr>
+      <ion-card-subtitle class="ion-text-center">Sistema de asistencia registrAPP</ion-card-subtitle>
+      <hr>
     </ion-card>
   </div>
   <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>

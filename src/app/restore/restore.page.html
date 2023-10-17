@@ -67,6 +67,13 @@
     class="custom-toast"
   ></ion-toast>
   <ion-toast
+    [isOpen]="alertaOpen4"
+    message="El campo de contraseña se encuentra vacio"
+    [duration]="5000"
+    (didDismiss)="mostrarAlerta4(false)"
+    class="custom-toast"
+  ></ion-toast>
+  <ion-toast
     [isOpen]="alertaOpen3"
     message="¡Contraseña actualizada exitosamente!"
     [duration]="4000"

@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UsuarioClass } from '../services/usuario-class';
-import { LoginClass } from '../services/login-class';
 import { Router, NavigationExtras, RouterLinkWithHref } from '@angular/router';
-import type { IonModal } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
+import { ApiService } from '../services/api.service';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -13,17 +12,55 @@ import { AnimationController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
   
+  
+
   alertaOpen = false;
   mostrarAlerta(isShow: boolean){
     this.alertaOpen = isShow;
   }//Se crea una variable en false para luego volverla True si se desea mostrar una alerta Toast
+  
+  usuario:{
+    apellido: string,
+    contrasena: string,
+    correo: string,
+    carrera: string,
+    nombre: string,
+    nombre_usuario: string,
+    tipo: string
+  };
+  username= ''
+  password= ''	
 
+  constructor(private api:ApiService, private router: Router, private navCtrl: NavController) {
+    localStorage.setItem('online', 'false');
+  }
 
+  login(){
+    this.api.getUsuario(this.username).subscribe(res=>{     
+      this.usuario=res;
+      console.log(this.usuario);
+      if(this.password==this.usuario.contrasena){
+        localStorage.setItem('online', 'true');
+        if(this.usuario.tipo=='Profesor'){
+          localStorage.setItem('profesor', 'true');
+        }else{
+          localStorage.setItem('profesor', 'false');
+        }
+        this.router.navigate(['/home'], {state:{ usuario: this.usuario},});
+      }else{
+        this.mostrarAlerta(true)
+      }
+      
+    },(error)=>{
+      console.log(error);
+      this.mostrarAlerta(true)
+    })
+  }
+  /*
   usuariosReg:{nombre:string, apellido:string, email:string, tipo:string, username:string, password:string, 
               carrera:string, ramos:Array<string>[]}[]=[]
 
-  username= ''
-  password= ''	
+  
   //Se crea el arreglo de usuarios con sus respectivos campos además de variables para recoger los datos del formulario
   
 
@@ -53,7 +90,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  /*
+  
   register() {
     // Agregar usuarios al arreglo
     this.usuariosReg.push({nombre:'Lucas', apellido:'Fernandez', email:'lu.fernandezm@duocuc.cl', tipo:'Alumno', username:'lufernandezm', password:'lucas123', carrera:'Ingenieria en Informática', ramos:[["Programación Web"], ["Programación de Base de datos"], ["Ingeniería de Software"], ["Mentalidad Emprendedora"]]},
@@ -70,67 +107,6 @@ export class LoginPage implements OnInit {
     this.username = '';
     this.password = '';
   }
-  /*
-  constructor(private route1: Router) {}
-
   
-  usuariosReg:{nombre:string, apellido:string, email:string, tipo:string, username:string, password:string}[]=
-  [
-    {nombre:'Lucas', apellido:'Fernandez', email:'lu.fernandezm@duocuc.cl', tipo:'Administrador', username:'lufernandezm', password:'lucas123'},
-    {nombre:'Francisco', apellido:'Toloza', email:'fran.toloza@duocuc.cl', tipo:'Profesor', username:'frantoloza', password:'francisco123'},
-    {nombre:'Matias', apellido:'Diaz', email:'mat.diaz@duocuc.cl', tipo:'Alumno', username:'matdiaz', password:'matias123'},
-    {nombre:'Carlos', apellido:'De Ferrari', email:'car.deferrari@duocuc.cl', tipo:'Alumno', username:'cardeferrari', password:'cardeferrari123'}
-  ]
-  
-  listUsuarios: UsuarioClass[] = [
-    new UsuarioClass('Lucas','Fernández','lu.fernandezm@duocuc.cl',3,'lufernandezm','lucas123'),
-    new UsuarioClass('Francisco','Toloza','fran.toloza@duocuc.cl',3,'frantoloza','francisco123'),
-    new UsuarioClass('Matias','Diaz','mat.diaz@duocuc.cl',3,'matdiaz','matias123'),
-    new UsuarioClass('Carlos','De Ferrari', 'car.deferrari@duocuc.cl',2,'cardeferrari','cardeferrari123')
-  ];
-
-  userLogin = {
-    username: "",
-    password: "",
-    tipo:""
-  }
-
-  userLoginRestart(): void{
-    this.userLogin.username = "",
-    this.userLogin.password = ""
-  }
-
-  userLoginValidator(): void{
-    for(let i = 0; i < this.listUsuarios.length; i++){
-      if((this.listUsuarios[i].username==this.userLogin.username)&&(this.listUsuarios[i].password==this.userLogin.password)){
-        this.userLogin.username=this.listUsuarios[i].username
-        this.userLogin.password=this.listUsuarios[i].password
-
-        if(this.listUsuarios[i].tipo==1){
-          this.userLogin.tipo='Administrador'//continuar validaciones de tipos y luego validar ingreso y clave
-        }else{
-          if(this.listUsuarios[i].tipo==2){
-            this.userLogin.tipo='Profesor'
-          }else{
-            if(this.listUsuarios[i].tipo==3){
-              this.userLogin.tipo='Alumno'
-            }
-          }
-        }
-        let userInfoSend: NavigationExtras = {
-          state: {
-            user: this.userLogin
-          }
-        }
-        this.route1.navigate(['/home'], userInfoSend);
-      }else{
-        //mostrar alerta de ingreso
-        this.mostrarAlerta(true)
-      }
-    }
-  }
-  ngOnInit() {
-    this.userLoginRestart
-  }*/
 
 }

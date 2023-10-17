@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-end">Mi Cuenta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-card>
+      <ion-card-title>
+        <h1>Datos personales</h1>
+      </ion-card-title>
+
+      <ion-card-content>
+        <p>Usuario: </p>
+        <span>{{usuario.nombre_usuario}}</span>
+        <p>Nombre: </p>
+        <span>{{usuario.nombre}} {{usuario.apellido}}</span>
+        <p>Tipo de perfil: </p>
+        <span>{{usuario.tipo}}</span>
+        <p>Correo electrónico: </p>
+        <span>{{usuario.correo}}</span>
+        <p>Carrera: </p>
+        <span>{{usuario.carrera}}</span>
+        <br>
+        
+      </ion-card-content>
+      <div class="ion-text-right">
+        <ion-button fill="solid" class="boton" (click)="verAsistencia()">ASISTENCIA</ion-button>
+      </div>
+      
+    </ion-card>
+  </div>
+  <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
+</ion-content>
