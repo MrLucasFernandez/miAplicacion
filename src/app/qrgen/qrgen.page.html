@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-end">QR Gen</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="centrar">
+    <ion-card-content >
+      <qrcode [qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </ion-card-content>
+    <ion-card-subtitle class="ion-text-center">Sistema de asistencia registrAPP</ion-card-subtitle>
+    <hr>
+  </ion-card>
+</ion-content>
