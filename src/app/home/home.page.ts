@@ -19,6 +19,7 @@ export class HomePage implements OnDestroy{
   };
   
   resultadoQR : any;
+  estado_visible = '';
 
   constructor(private router: Router) { 
     //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
@@ -61,8 +62,12 @@ export class HomePage implements OnDestroy{
       }
       await BarcodeScanner.hideBackground();
       document.querySelector('body').classList.add('scanner-active');
+      this.estado_visible = 'hidden';
       const resultado = await BarcodeScanner.startScan();
       console.log(resultado);
+      this.estado_visible = '';
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
       if (resultado?.hasContent){
         this.resultadoQR = resultado.content;
         console.log(this.resultadoQR)
@@ -77,6 +82,7 @@ export class HomePage implements OnDestroy{
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
     document.querySelector('body').classList.remove('scanner-active');
+    this.estado_visible = '';
   }
 
   logout(){
