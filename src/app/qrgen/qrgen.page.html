@@ -9,6 +9,11 @@
 
 <ion-content [fullscreen]="true">
   <ion-card class="centrar">
+    <ion-item>
+      <ion-select label="Asignatura" *ngFor="let r of ramos" (ionChange)="changeRamo($event)">
+        <ion-select-option value="{{r['id_ramo']}}">{{r['sigla']}}</ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-card-content >
       <qrcode [qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     </ion-card-content>

@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Router} from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { AsistenciaService } from '../services/asistencia.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +22,12 @@ export class HomePage implements OnDestroy{
   resultadoQR : any;
   estado_visible = '';
 
-  constructor(private router: Router, private filtro: AsistenciaService) { 
+  
+  constructor(private router: Router) {
+    
     //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
     this.usuario = this.router.getCurrentNavigation()?.extras.state?.['usuario'];
+
     
   }
 
@@ -35,7 +38,7 @@ export class HomePage implements OnDestroy{
 
   verQR(){
     if(this.usuario.tipo=='Profesor'){
-      this.router.navigate(['/qrgen']);
+      this.router.navigate(['/qrgen'], {state:{ usuario: this.usuario}});
     }else{
       if (this.usuario.tipo=='Alumno'){
         this.iniciarQR();
@@ -92,9 +95,7 @@ export class HomePage implements OnDestroy{
     this.router.navigate(['/login']);
   }
 
-  filtrar(){
-    this.filtro.filtrarAsistencia("lufernandezm");
-  }
+  
 
 
 
