@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-ramos',
@@ -9,18 +11,51 @@ import { ApiService } from '../services/api.service';
 export class RamosPage implements OnInit {
   
   alumnos=[]
-  constructor(private api:ApiService) { 
-    this.api.getAlumnos().subscribe(res=>{
+  ramos=[]
+
+  ramo:{
+    id_ramo: string,
+    descripcion: string,
+    clases_reg: string,
+    profesor: string,
+    siglas: string
+  }
+
+  usuario:{
+    apellido: string,
+    contrasena: string,
+    correo: string,
+    carrera: string,
+    nombre: string,
+    nombre_usuario: string,
+    tipo: string
+  };
+
+  ramosShown = false;
+  constructor(private api:ApiService, private router: Router) { 
+    this.usuario = this.router.getCurrentNavigation()?.extras.state?.['usuario'];
+    this.ramo = this.router.getCurrentNavigation()?.extras.state?.['ramos'];
+    
+    
+    this.api.getRamos(this.usuario.nombre_usuario).subscribe(res=>{
       console.log(res);
-      this.alumnos=res;
+      this.ramos=res["items"];
     },(error)=>{
       console.log(error);
     })
+
+    this.api.getAlumnos(this.usuario.nombre_usuario,this.ramo[0].id_ramo).subscribe(res=>{
+      console.log(res);
+      this.alumnos=res["items"];
+    },(error)=>{
+      console.log(error);
+    })
+    
+
+    
   }
-  ramosShown1 = false;
-  ramosShown2 = false;
-  ramosShown3 = false;
-  ramosShown4 = false;
+  
+  
   
   /*
   mostrarRamos(){
@@ -57,7 +92,7 @@ export class RamosPage implements OnInit {
     
   }*/
   ngOnInit(){
-    this.api.getAlumnos();
+    
   }
 
 }
