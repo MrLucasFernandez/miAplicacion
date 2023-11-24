@@ -1,4 +1,4 @@
-# miAplicacion
+# registrAPP
 
 Integrantes:
 
@@ -6,4 +6,4 @@ Lucas Fernández.
 Francisco Toloza.
 
 
-Caso código QR.
+Caso registrAPP.
