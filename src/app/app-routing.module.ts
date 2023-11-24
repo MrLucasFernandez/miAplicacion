@@ -39,9 +39,21 @@ const routes: Routes = [
     canActivate: [AuthOnlineGuard]
   },
   {
+    path: 'qrscan',
+    loadChildren: () => import('./qrscan/qrscan.module').then( m => m.QrscanPageModule),
+    canActivate: [AuthOnlineGuard]
+  },
+  {
+    path: 'qrgen',
+    loadChildren: () => import('./qrgen/qrgen.module').then( m => m.QrgenPageModule),
+    canActivate: [AuthOnlineGuard, AuthProfesorGuard]
+  },
+  {
     path: '**',
     loadChildren: () => import('./notfound/notfound.module').then( m => m.NotfoundPageModule)
   },
+  
+  
   
 
 

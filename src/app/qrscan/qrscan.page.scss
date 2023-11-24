@@ -1,0 +1,67 @@
+.titulo{
+    font-weight: bold;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: #ffffff;
+    font-style: italic;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+div{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 15%;
+}
+ion-back-button{
+    padding-left: 10%;
+}
+ion-img{
+    height: 20%;
+    width: 40%;
+    bottom: 0;
+    transform: translate(75%,220%);
+}
+p{
+    font-weight: bolder;
+    font-size: 17px;
+    padding-top: 2%;
+
+}
+p span{
+    font-weight: normal;
+    font-size: 15px;
+;
+}
+ion-content{
+    --background: #012c56;
+}
+ion-card{
+    --background: #ffffff;
+    color: #000000;
+}
+ion-card-title{
+    color: #000000;
+    font-weight: bold;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.boton-qr{
+    --background: #012c56;
+    width: 100%;
+    font-size: large;
+    
+}
+.centrar{
+    width: 90%;
+    top: 50%;
+    left: 47.5%;
+    transform: translate(-50%,-50%);
+}
+.mensaje{
+    color: #35923d;
+    --background: #ffffff;
+    font-style: italic;
+    text-align: center;
+}
+

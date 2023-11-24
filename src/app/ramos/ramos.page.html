@@ -7,124 +7,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="container">
-    <ion-card>
+<ion-content [fullscreen]="true" *ngFor="let r of ramos">
+
+  <div id="container" >
+    <ion-card >
       <ion-card-title>
         <!--<ion-button fill="clear" (click)="mostrarRamos()">
           <ion-icon name="caret-down-outline" slot="end"></ion-icon>
         </ion-button>-->
-        <ion-button (click)="ramosShown1 = !ramosShown1" fill="clear">
-          <h1 class="titulo">Acústica de Recinto</h1>
+        <ion-button (click)="ramosShown = !ramosShown" fill="clear">
+          <h1 class="titulo">{{r['descripcion']}}</h1>
           
           <ion-icon name="caret-down-outline" slot="end"></ion-icon>
         </ion-button>
-        <h6>AUG-2121</h6>
+        <h6>{{r['sigla']}} <span><h6 class="ion-float-end ion-padding-end">Clases totales: <span>{{r['clases_reg']}}</span></h6></span></h6>
+        
       </ion-card-title>
       <ion-card-content >
-        <table *ngIf="ramosShown1">
+        <table *ngIf="ramosShown">
             <tr class="ion-text-left">
-              <th>ID</th>
+              
               <th>Nombre</th>
               <th>Correo</th>
+              <th>Clases Asistidas</th>
             </tr>
           <tbody >
             <tr *ngFor="let i of alumnos">
-              <td class="mover">{{i['id']}}</td>
-              <td class="mover">{{i['name']}}</td>
-              <td>{{i['email']}}</td>
+              <td class="mover">{{i['nombre']}}</td>
+              <td class="mover">{{i['correo']}}</td>
+              <td>{{i['clases_asist']}}</td>
             </tr>
           </tbody>
         </table>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card-title>
-        <!--<ion-button fill="clear" (click)="mostrarRamos()">
-          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
-        </ion-button>-->
-        <ion-button (click)="ramosShown2 = !ramosShown2" fill="clear">
-          <h1 class="titulo">Audio Digital</h1>
-          
-          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
-        </ion-button>
-        <h6>GDU-1113</h6>
-      </ion-card-title>
-      <ion-card-content >
-        <table *ngIf="ramosShown2">
-            <tr class="ion-text-left">
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-            </tr>
-          <tbody >
-            <tr *ngFor="let i of alumnos">
-              <td class="mover">{{i['id']}}</td>
-              <td class="mover">{{i['name']}}</td>
-              <td>{{i['email']}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-title>
-        <!--<ion-button fill="clear" (click)="mostrarRamos()">
-          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
-        </ion-button>-->
-        <ion-button (click)="ramosShown3 = !ramosShown3" fill="clear">
-          <h1 class="titulo">Lenguaje Audiovisual</h1>
-          
-          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
-        </ion-button>
-        <h6>OSI-2114</h6>
-      </ion-card-title>
-      <ion-card-content >
-        <table *ngIf="ramosShown3">
-            <tr class="ion-text-left">
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-            </tr>
-          <tbody >
-            <tr *ngFor="let i of alumnos">
-              <td class="mover">{{i['id']}}</td>
-              <td class="mover">{{i['name']}}</td>
-              <td>{{i['email']}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-title>
-        <!--<ion-button fill="clear" (click)="mostrarRamos()">
-          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
-        </ion-button>-->
-        <ion-button (click)="ramosShown4 = !ramosShown4" fill="clear">
-          <h1 class="titulo">Electroacústica</h1>
-          
-          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
-        </ion-button>
-        <h6>EAC-1116</h6>
-      </ion-card-title>
-      <ion-card-content >
-        <table *ngIf="ramosShown4">
-            <tr class="ion-text-left">
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-            </tr>
-          <tbody >
-            <tr *ngFor="let i of alumnos">
-              <td class="mover">{{i['id']}}</td>
-              <td class="mover">{{i['name']}}</td>
-              <td>{{i['email']}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </ion-card-content>
-    </ion-card>
+    
     
   </div>
   <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>

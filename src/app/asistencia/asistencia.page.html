@@ -21,17 +21,20 @@
         <table>
             <tr class="ion-text-left">
               <th>Ramo</th>
-              <th>Clases Registradas</th>
               <th>Clases Asistidas</th>
+              <th>Clases Registradas</th>
+              <th>Porcentaje</th>
               
             </tr>
           <tbody >
             
             <tr *ngFor="let i of asistencias">
               
-              <td class="mover">{{i['ramo']}}</td>
-              <td class="mover">{{i['clases_reg']}}</td>
+              <td class="mover">{{i['descripcion']}}</td>
               <td class="mover">{{i['clases_asist']}}</td>
+              <td class="mover">{{i['clases_reg']}}</td>
+              <td class="mover">{{i['porcentaje']}}%</td>
+              
               
             </tr>
             

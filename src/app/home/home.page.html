@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 
   
   <br>
@@ -18,13 +18,16 @@
       
       <ion-card-content class="ion-text-center">
         <ion-button fill="solid" class="boton-cuenta" (click)="verCuenta()">MI CUENTA</ion-button>
-        <ion-button fill="solid" class="boton-qr"> QR</ion-button>
+        <ion-button fill="solid" class="boton-qr" (click)="verQR()"> QR</ion-button>
         <ion-button fill="solid" class="boton-salir" (click)="logout()">CERRAR SESIÓN</ion-button>
         
       </ion-card-content>
       <hr>
       <ion-card-subtitle class="ion-text-center">Sistema de asistencia registrAPP</ion-card-subtitle>
       <hr>
+      
+      
+      
     </ion-card>
   </div>
   <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>

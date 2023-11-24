@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-end">QR Gen</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="centrar">
+    <ion-item>
+      <ion-select label="Asignatura" *ngFor="let r of ramos" (ionChange)="changeRamo($event)">
+        <ion-select-option value="{{r['id_ramo']}}">{{r['sigla']}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card-content >
+      <qrcode [qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </ion-card-content>
+    <ion-card-subtitle class="ion-text-center">Sistema de asistencia registrAPP</ion-card-subtitle>
+    <hr>
+  </ion-card>
+</ion-content>
