@@ -21,6 +21,8 @@ export class ApiService {
   apiURL = 'https://g0427e384785cab-apimovil.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/usuarios/'
   apiURLasistencia = 'https://g0427e384785cab-apimovil.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/asistencias/usuario/'
   apiURLramos = 'https://g0427e384785cab-apimovil.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/ramo/lista/'
+  apiURLsumarasistencia = 'https://g0427e384785cab-apimovil.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/asistencias/agregar/'
+  apiURLsumarclases = 'https://g0427e384785cab-apimovil.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/ramo/clases/'
 
   constructor(private http:HttpClient) { }
 
@@ -46,6 +48,17 @@ export class ApiService {
   }
   putUsuario(id:string,data):Observable<any>{
     return this.http.put(this.apiURL+id,data,this.httpOptions).pipe(
+      retry(3)
+    );
+  }
+  putAsistencias(user:string,id:number,data):Observable<any>{
+    return this.http.put(this.apiURLsumarasistencia+user+"/"+id,data,this.httpOptions).pipe(
+      retry(3)
+    );
+  }
+
+  putClases(user:string,id:number,data):Observable<any>{
+    return this.http.put(this.apiURLsumarclases+user+"/"+id,data,this.httpOptions).pipe(
       retry(3)
     );
   }

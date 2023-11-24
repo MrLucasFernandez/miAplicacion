@@ -7,12 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [style.visibility]="estado_visible">
   <ion-card class="centrar">
     <ion-card-content >
-      
+      <ion-button fill="solid" class="boton-qr" (click)="iniciarQR()">ESCANEAR</ion-button>
     </ion-card-content>
     <ion-card-subtitle class="ion-text-center">Sistema de asistencia registrAPP</ion-card-subtitle>
+    <p class="mensaje ion-text-center" *ngIf="resultadoQR">{{ mensaje }}</p>
+    
     <hr>
   </ion-card>
+  <ion-img src='../../assets/icon/duoc.png' alt="DuocUC-ICO"></ion-img>
 </ion-content>

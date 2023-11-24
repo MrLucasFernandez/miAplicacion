@@ -8,7 +8,7 @@ import { ApiService } from '../services/api.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnDestroy{
+export class HomePage{
   usuario:{
     apellido: string,
     contrasena: string,
@@ -18,20 +18,17 @@ export class HomePage implements OnDestroy{
     nombre_usuario: string,
     tipo: string
   };
-  
-  resultadoQR : any;
-  estado_visible = '';
+
 
   
-  constructor(private router: Router) {
-    
-    //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
+
+  
+  constructor(private router: Router, private api:ApiService) {
+   //Se consume desde la ruta Login los parametros y se guardan en las variables para ser mostradas
     this.usuario = this.router.getCurrentNavigation()?.extras.state?.['usuario'];
-
-    
+  
   }
 
-  
   verCuenta(){
     this.router.navigate(['/usuario'], {state:{ usuario: this.usuario},});
   }
@@ -41,54 +38,14 @@ export class HomePage implements OnDestroy{
       this.router.navigate(['/qrgen'], {state:{ usuario: this.usuario}});
     }else{
       if (this.usuario.tipo=='Alumno'){
-        this.iniciarQR();
+        this.router.navigate(['/qrscan'], {state:{ usuario: this.usuario}});
       }
     }
   }
 
-  async verPermisos(){
-    try{
-      const status = await  BarcodeScanner.checkPermission({ force : true });
-      if (status.granted) {
-        return true;
-      }else
-      return false;
-    }catch(error) {
-      console.log(error)
-      return false;
-    }
-  }
+  
 
-  async iniciarQR(){
-    try {
-      const permisos = await this.verPermisos();
-      if (!permisos){
-        return;
-      }
-      await BarcodeScanner.hideBackground();
-      document.querySelector('body').classList.add('scanner-active');
-      this.estado_visible = 'hidden';
-      const resultado = await BarcodeScanner.startScan();
-      console.log(resultado);
-      this.estado_visible = '';
-      BarcodeScanner.showBackground();
-      document.querySelector('body').classList.remove('scanner-active');
-      if (resultado?.hasContent){
-        this.resultadoQR = resultado.content;
-        console.log(this.resultadoQR)
-      }
-    } catch(error){
-      console.log(error);
-      this.detenerQR();
-    }
-  }
-
-  detenerQR(){
-    BarcodeScanner.showBackground();
-    BarcodeScanner.stopScan();
-    document.querySelector('body').classList.remove('scanner-active');
-    this.estado_visible = '';
-  }
+  
 
   logout(){
     localStorage.setItem('online', 'false');
@@ -96,10 +53,4 @@ export class HomePage implements OnDestroy{
   }
 
   
-
-
-
-  ngOnDestroy(): void {
-    this.detenerQR();
-  }
 }

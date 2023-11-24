@@ -48,6 +48,13 @@ export class QrgenPage implements OnInit {
   changeRamo(e) {
     console.log('ID Ramo: ' + e.detail.value);
     this.qrCode = e.detail.value.toString();
+
+    this.api.putClases(this.usuario.nombre_usuario, e.detail.value, {id_ramo: e.detail.value,descripcion: "descripcion",profesor: "profesor",sigla: "sigla", clases_reg:0}).subscribe(res=>{     
+      console.log(res);
+    },(error)=>{
+
+      console.log(error);
+    })
     //JSON.stringify(ev.target.value)
   }
 
