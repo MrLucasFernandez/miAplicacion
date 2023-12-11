@@ -5,11 +5,11 @@ describe('QrgenPage', () => {
   let component: QrgenPage;
   let fixture: ComponentFixture<QrgenPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(QrgenPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

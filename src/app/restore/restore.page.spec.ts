@@ -5,11 +5,11 @@ describe('RestorePage', () => {
   let component: RestorePage;
   let fixture: ComponentFixture<RestorePage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(RestorePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
